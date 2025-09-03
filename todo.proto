@@ -1,32 +1,55 @@
+// Specifies the version of Protocol Buffers syntax we're using.
 syntax = "proto3";
 
+// Defines the package name, which helps to prevent naming conflicts.
 package todoPackage;
 
+// Import the 'Empty' message type from Google's standard protobuf library.
+// This is used for RPC methods that don't take any parameters or return anything.
 import "google/protobuf/empty.proto";
 
-// Create requests for the TodoItem and TodoRequest messages
+// Defines the gRPC service for managing a list of todos.
+// It includes RPC methods for all CRUD (Create, Read, Update, Delete) operations.
 service TodoService {
+  // Creates a new todo item.
   rpc CreateTodo (TodoItem) returns (TodoItem);
+
+  // Retrieves a single todo item by its ID.
   rpc GetTodo (TodoRequest) returns (TodoItem);
+
+  // Updates an existing todo item.
   rpc UpdateTodo (TodoItem) returns (TodoItem);
+
+  // Deletes a todo item by its ID.
   rpc DeleteTodo (TodoRequest) returns (google.protobuf.Empty);
+
+  // Retrieves a list of all todo items.
   rpc ListTodos (google.protobuf.Empty) returns (TodoList);
 }
 
+// Defines the structure of a single todo item.
 message TodoItem {
+  // Unique identifier for the todo item.
   string id = 1;
+  // The title or name of the todo item.
   string title = 2;
+  // A more detailed description of the todo item.
   string description = 3;
+  // A boolean flag indicating whether the todo item is completed.
   bool completed = 4;
 }
 
+// Defines the request message for operations that only need a todo item's ID.
 message TodoRequest {
+  // The ID of the todo item to be retrieved or deleted.
   string id = 1;
 }
 
-// To create arrays of the TodoItem and TodoRequest messages
+// Defines a message that contains a list of todo items.
+// This is used as the response type for the ListTodos RPC method.
 message TodoList {
+  // A repeated field, which is like an array or list of TodoItem messages.
   repeated TodoItem todos = 1;
+  // This field seems to be unused in the current implementation, but it's defined here.
   repeated TodoRequest requests = 2;
 }
-
