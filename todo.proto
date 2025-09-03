@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package todoPackage;
+
+import "google/protobuf/empty.proto";
+
+// Create requests for the TodoItem and TodoRequest messages
+service TodoService {
+  rpc CreateTodo (TodoItem) returns (TodoItem);
+  rpc GetTodo (TodoRequest) returns (TodoItem);
+  rpc UpdateTodo (TodoItem) returns (TodoItem);
+  rpc DeleteTodo (TodoRequest) returns (google.protobuf.Empty);
+  rpc ListTodos (google.protobuf.Empty) returns (TodoList);
+}
+
+message TodoItem {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+}
+
+message TodoRequest {
+  string id = 1;
+}
+
+// To create arrays of the TodoItem and TodoRequest messages
+message TodoList {
+  repeated TodoItem todos = 1;
+  repeated TodoRequest requests = 2;
+}
+

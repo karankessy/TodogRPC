@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 # Logs
 logs
+=======
+# Node.js
+node_modules/
+
+# Logs
+>>>>>>> 7695d1b (Initial commit: gRPC Todo microservice with protobuf, CLI client, and binary export)
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
@@ -137,3 +145,24 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+=======
+
+# OS
+.DS_Store
+
+# gRPC/Protobuf
+*.bin
+
+# Environment
+.env
+
+# VSCode
+.vscode/
+
+# Misc
+*.swp
+*.swo
+
+# Output
+/todos.json
+>>>>>>> 7695d1b (Initial commit: gRPC Todo microservice with protobuf, CLI client, and binary export)
